@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Waste Bin Fill Level Prediction</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+        }
+        .box {
+            width: 420px;
+            margin: 60px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>Smart Waste Bin Fill Level Prediction</h2>
+
+        <form method="post" action="/predict">
+
+            <label>Bin ID</label>
+            <input type="number" name="bin_id" required>
+
+            <label>Location</label>
+            <input type="text" name="location" required>
+
+            <label>Hour (0–23)</label>
+            <input type="number" name="hour" required>
+
+            <label>Day (1–7)</label>
+            <input type="number" name="day" required>
+
+            <label>Temperature (°C)</label>
+            <input type="number" name="temperature" step="0.1" required>
+
+            <button type="submit">Predict Fill Level</button>
+        </form>
+
+        {% if prediction %}
+            <h3>Predicted Fill Level:</h3>
+            <p><b>{{ prediction }} %</b></p>
+        {% endif %}
+    </div>
+</body>
+</html>
